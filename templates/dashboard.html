@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENTORA Dashboard - Your Career Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="dashboard-body">
+    <!-- Level Up Animation -->
+    <div id="levelUpAnimation" class="level-up-animation hidden">
+        <div class="level-up-content">
+            <h2 class="pixel-font">LEVEL UP!</h2>
+            <div class="level-up-details">
+                <span class="new-level">Level <span id="newLevel"></span></span>
+                <span class="xp-gained">+<span id="xpGained"></span> XP</span>
+            </div>
+            <div class="level-up-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <h1 class="pixel-font">MENTORA</h1>
+                </div>
+                <div class="user-stats">
+                    <div class="user-avatar">
+                        <span class="avatar-icon">👤</span>
+                        <div class="online-indicator"></div>
+                    </div>
+                    <div class="user-info">
+                        <h3 class="user-name">Player</h3>
+                        <div class="user-level">
+                            <span class="level-text">Level <span id="userLevel">1</span></span>
+                            <div class="xp-bar">
+                                <div class="xp-fill" id="xpProgress" style="width: 45%"></div>
+                            </div>
+                            <span class="xp-text"><span id="currentXP">45</span> / <span id="nextLevelXP">100</span> XP</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Command Center</span>
+                </a>
+                <a href="#internships" class="nav-item" data-section="internships">
+                    <span class="nav-icon">🎯</span>
+                    <span class="nav-text">Quest Board</span>
+                    <span class="nav-badge">5</span>
+                </a>
+                <a href="#ai-coach" class="nav-item" data-section="ai-coach">
+                    <span class="nav-icon">🤖</span>
+                    <span class="nav-text">AI Companion</span>
+                </a>
+                <a href="#communication" class="nav-item" data-section="communication">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">Skill Training</span>
+                </a>
+                <a href="#achievements" class="nav-item" data-section="achievements">
+                    <span class="nav-icon">🏆</span>
+                    <span class="nav-text">Achievements</span>
+                </a>
+                <a href="#profile" class="nav-item" data-section="profile">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Character</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-secondary btn-small" onclick="logout()">
+                    <span class="btn-icon">🚪</span>
+                    Exit Game
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Overview -->
+            <section id="dashboard-section" class="content-section active">
+                <div class="section-header">
+                    <h1 class="section-title pixel-font">Command Center</h1>
+                    <div class="quick-actions">
+                        <button class="btn btn-primary btn-small" onclick="startNewQuest()">
+                            <span class="btn-icon">⚡</span>
+                            New Quest
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Progress Card -->
+                    <div class="dashboard-card progress-card">
+                        <div class="card-header">
+                            <h3>⚡ Progress Stats</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-item">
+                                <span class="stat-label">Current Level</span>
+                                <span class="stat-value gradient-text">Level 3</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Total XP</span>
+                                <span class="stat-value">245 XP</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Quests Completed</span>
+                                <span class="stat-value">12</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Success Rate</span>
+                                <span class="stat-value text-success">92%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Active Quests -->
+                    <div class="dashboard-card quests-card">
+                        <div class="card-header">
+                            <h3>🎯 Active Quests</h3>
+                            <span class="quest-count">3 Active</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="quest-item">
+                                <div class="quest-icon">💻</div>
+                                <div class="quest-info">
+                                    <h4>Software Engineering Intern</h4>
+                                    <p>TechCorp - 85% Match</p>
+                                </div>
+                                <div class="quest-status">
+                                    <span class="status-badge status-active">Active</span>
+                                </div>
+                            </div>
+                            <div class="quest-item">
+                                <div class="quest-icon">📊</div>
+                                <div class="quest-info">
+                                    <h4>Data Science Intern</h4>
+                                    <p>DataFlow Analytics - 78% Match</p>
+                                </div>
+                                <div class="quest-status">
+                                    <span class="status-badge status-pending">Pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-outline btn-small">View All Quests</button>
+                        </div>
+                    </div>
+
+                    <!-- Recent Achievements -->
+                    <div class="dashboard-card achievements-card">
+                        <div class="card-header">
+                            <h3>🏆 Recent Achievements</h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="achievement-item">
+                                <div class="achievement-icon">🎤</div>
+                                <div class="achievement-info">
+                                    <h4>Interview Master</h4>
+                                    <p>Completed 5 mock interviews</p>
+                                </div>
+                                <div class="achievement-xp">+50 XP</div>
+                            </div>
+                            <div class="achievement-item">
+                                <div class="achievement-icon">📝</div>
+                                <div class="achievement-info">
+                                    <h4>Profile Complete</h4>
+                                    <p>Filled out complete profile</p>
+                                </div>
+                                <div class="achievement-xp">+25 XP</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Companion Widget -->
+                    <div class="dashboard-card ai-widget">
+                        <div class="card-header">
+                            <h3>🤖 AI Companion</h3>
+                            <div class="ai-status">
+                                <div class="status-indicator online"></div>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="ai-suggestion">
+                                <p>"Based on your profile, I recommend focusing on React and Node.js skills for your next internship applications."</p>
+                            </div>
+                            <div class="ai-actions">
+                                <button class="btn btn-primary btn-small" onclick="openAIChat()">
+                                    Chat with AI
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Internships Section -->
+            <section id="internships-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title pixel-font">Quest Board</h1>
+                    <div class="section-filters">
+                        <select class="form-select" id="locationFilter">
+                            <option value="">All Locations</option>
+                            <option value="remote">Remote</option>
+                            <option value="san-francisco">San Francisco</option>
+                            <option value="new-york">New York</option>
+                        </select>
+                        <select class="form-select" id="fieldFilter">
+                            <option value="">All Fields</option>
+                            <option value="tech">Technology</option>
+                            <option value="design">Design</option>
+                            <option value="marketing">Marketing</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="internships-grid" id="internshipsGrid">
+                    <!-- Internship cards will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- AI Coach Section -->
+            <section id="ai-coach-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title pixel-font">AI Companion</h1>
+                </div>
+
+                <div class="ai-coach-container">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="ai-avatar">🤖</div>
+                            <div class="ai-info">
+                                <h3>Career Companion</h3>
+                                <span class="ai-status">Always ready to help</span>
+                            </div>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message ai-message">
+                                <div class="message-content">
+                                    <p>Hello! I'm your AI Career Companion. I'm here to help you navigate your career journey. What would you like to discuss today?</p>
+                                </div>
+                                <div class="message-time">Just now</div>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="chat-input-container">
+                                <input type="text" id="chatInput" class="chat-input" placeholder="Ask me about career advice, interview prep, or anything else...">
+                                <button class="chat-send-btn" onclick="sendMessage()">
+                                    <span>⚡</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Communication Training Section -->
+            <section id="communication-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title pixel-font">Skill Training</h1>
+                </div>
+
+                <div class="training-container">
+                    <div class="training-grid" id="scenariosGrid">
+                        <!-- Training scenarios will be populated by JavaScript -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Profile Section -->
+            <section id="profile-section" class="content-section">
+                <div class="section-header">
+                    <h1 class="section-title pixel-font">Character Profile</h1>
+                </div>
+
+                <div class="profile-container">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar">
+                                <span class="avatar-icon">👤</span>
+                            </div>
+                            <div class="profile-info">
+                                <h2 id="profileName">Player</h2>
+                                <p id="profileRole">Student Adventurer</p>
+                            </div>
+                        </div>
+                        <div class="profile-stats">
+                            <div class="stat-row">
+                                <span class="stat-label">Current Level:</span>
+                                <span class="stat-value">Level 3</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Total XP:</span>
+                                <span class="stat-value">245 XP</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">Join Date:</span>
+                                <span class="stat-value">March 2024</span>
+                            </div>
+                        </div>
+                        <div class="profile-skills">
+                            <h3>Special Abilities</h3>
+                            <div class="skills-list" id="profileSkills">
+                                <!-- Skills will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>

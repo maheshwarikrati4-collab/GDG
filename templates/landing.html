@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MENTORA - Level Up Your Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-animation">
+            <div class="neon-logo">
+                <h1 class="pixel-font">MENTORA</h1>
+                <div class="loading-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header/Navbar -->
+        <header class="navbar">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1 class="pixel-font">MENTORA</h1>
+                    <span class="level-badge">LEVEL 1</span>
+                </div>
+                <nav class="nav-links">
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <button id="loginBtn" class="btn btn-primary">Enter Game</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="pixel-font">LEVEL UP</span>
+                        <span class="gradient-text">Your Career</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Transform your professional journey into an epic quest. 
+                        Gain XP, unlock achievements, and discover your perfect career path.
+                    </p>
+                    <div class="hero-actions">
+                        <button id="startQuestBtn" class="btn btn-primary btn-large">
+                            <span class="btn-icon">🚀</span>
+                            Start Your Quest
+                        </button>
+                        <button class="btn btn-secondary btn-large">
+                            <span class="btn-icon">📊</span>
+                            View Stats
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-card" data-float-delay="0">
+                        <h3>🎯 Career Match</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%"></div>
+                        </div>
+                        <span class="progress-text">85% Match</span>
+                    </div>
+                    <div class="floating-card" data-float-delay="0.5">
+                        <h3>⚡ XP Gained</h3>
+                        <div class="xp-counter">+250 XP</div>
+                    </div>
+                    <div class="floating-card" data-float-delay="1">
+                        <h3>🏆 Achievement</h3>
+                        <div class="achievement">Interview Master</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <div class="container">
+                <h2 class="section-title pixel-font">Game Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Gamified Progress</h3>
+                        <p>Earn XP, unlock achievements, and level up your career skills through interactive challenges.</p>
+                        <div class="feature-stats">
+                            <span class="stat">+50 XP per challenge</span>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI Career Coach</h3>
+                        <p>Get personalized career guidance from our advanced AI companion that learns your goals.</p>
+                        <div class="feature-stats">
+                            <span class="stat">24/7 Coaching</span>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Smart Matching</h3>
+                        <p>Our algorithm finds internships and opportunities that perfectly match your skills and interests.</p>
+                        <div class="feature-stats">
+                            <span class="stat">95% Match Rate</span>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3>Communication Training</h3>
+                        <p>Practice interviews, networking, and professional communication through realistic scenarios.</p>
+                        <div class="feature-stats">
+                            <span class="stat">Real-time Feedback</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Players</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Partner Companies</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">AI Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Login Modal -->
+        <div id="loginModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="pixel-font">Enter Your Quest</h2>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Select Your Class</label>
+                            <select id="role" name="role" required class="form-select">
+                                <option value="">Choose your path...</option>
+                                <option value="student">🎓 Student Adventurer</option>
+                                <option value="professional">💼 Career Warrior</option>
+                                <option value="career_changer">🔄 Path Shifter</option>
+                                <option value="recent_graduate">🌟 Fresh Graduate</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span class="btn-icon">⚡</span>
+                            Begin Adventure
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Setup Modal -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="pixel-font">Character Setup</h2>
+            </div>
+            <div class="modal-body">
+                <form id="profileForm" class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Character Name</label>
+                            <input type="text" id="name" name="name" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="degree">Current Class/Degree</label>
+                            <input type="text" id="degree" name="degree" required class="form-input" placeholder="e.g., Computer Science">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="skills">Special Abilities (Skills)</label>
+                        <input type="text" id="skills" name="skills" required class="form-input" placeholder="Python, JavaScript, Design, Marketing...">
+                    </div>
+                    <div class="form-group">
+                        <label for="experience_level">Experience Level</label>
+                        <select id="experience_level" name="experience_level" required class="form-select">
+                            <option value="entry">Novice (Entry Level)</option>
+                            <option value="intermediate">Warrior (Intermediate)</option>
+                            <option value="advanced">Master (Advanced)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="career_goals">Quest Objectives (Career Goals)</label>
+                        <textarea id="career_goals" name="career_goals" required class="form-textarea" placeholder="Describe your career aspirations and dream job..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="interests">Personal Interests</label>
+                        <input type="text" id="interests" name="interests" class="form-input" placeholder="Gaming, AI, startups, design...">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-icon">🎮</span>
+                        Create Character & Enter World
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/landing.js') }}"></script>
+</body>
+</html>
