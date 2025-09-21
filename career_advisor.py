@@ -149,3 +149,9 @@ class AIGrowthCompanion:
         return "\n".join(
             context_parts
         ) if context_parts else "Limited profile information available"
+        import google.generativeai as genai
+        git add requirements.txt career_advisor.py
+git commit -m "Add google-generativeai dependency"
+git push
+
+
